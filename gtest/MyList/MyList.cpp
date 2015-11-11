@@ -1,6 +1,7 @@
 #include "CNode.h"
 #include "MyList.h"
 #include "iostream"
+
 using namespace std;
 CNode* CreateList(int count, const int* vals) {
   if (count <= 0) return 0;
@@ -16,6 +17,7 @@ CNode* CreateList(int count, const int* vals) {
   prev->next = 0;
   return head;
 }
+
 CNode* check(CNode *a, CNode *b) {
   while (a != 0) {
     CNode *tmp = b;
@@ -28,11 +30,11 @@ CNode* check(CNode *a, CNode *b) {
   }
   return 0;
 }
-void print(CNode *r){
-	while (r != 0)
-	{
-		cout << r->val << ' ';
-		r = r->next;
-	}
-	cout << endl;
+
+void print(CNode *r) {
+  while (r != 0) {
+    cout << r->val << ' ';
+    r = r->next;
+  }
+  cout << endl;
 }

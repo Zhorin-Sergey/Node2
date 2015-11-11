@@ -23,3 +23,22 @@ TEST(MyList, CreateList) {
   }
   EXPECT_EQ(kListSize, k);
 }
+
+TEST(MyList, FunctionCheck) {
+  const int kListSize = 10;
+  int vals[kListSize];
+  for (int i = 0; i < kListSize; ++i)
+    vals[i] = i + 1;
+  CNode *head = CreateList(kListSize, vals);
+  CNode *head1 = CreateList(kListSize, vals);
+  CNode *d = head1;
+  for(int i = 0; i<2; i++) {
+    d = d->next;
+  }
+  CNode *d1 = head;
+  for (int i = 0; i<4; i++) {
+    d1 = d1->next;
+  }
+  d1->next = d;
+  EXPECT_EQ(d, check(head1, head));
+}
