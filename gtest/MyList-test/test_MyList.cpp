@@ -24,7 +24,7 @@ TEST(MyList, CreateList) {
   EXPECT_EQ(kListSize, k);
 }
 
-TEST(MyList, FunctionCheck) {
+TEST(MyList, FunctionCheck1) {
   const int kListSize = 10;
   int vals[kListSize];
   for (int i = 0; i < kListSize; ++i)
@@ -41,4 +41,51 @@ TEST(MyList, FunctionCheck) {
   }
   d1->next = d;
   EXPECT_EQ(d, check(head1, head));
+}
+
+TEST(MyList, FunctionCheck2) {
+  const int kListSize = 10;
+  int vals[kListSize];
+  for (int i = 0; i < kListSize; ++i)
+    vals[i] = i + 1;
+  CNode *head = CreateList(kListSize, vals);
+  CNode *head1 = CreateList(kListSize, vals);
+  EXPECT_EQ(NULL, check(head1, head));
+}
+
+TEST(MyList, FunctionCheck3) {
+  const int kListSize = 10;
+  int vals[kListSize];
+  for (int i = 0; i < kListSize; ++i)
+    vals[i] = i + 1;
+  CNode *head = CreateList(kListSize, vals);
+  CNode *head1 = CreateList(kListSize, vals);
+  CNode *d = head1;
+  while (d->next->next->next!=0) {
+    d = d->next;
+  }
+  print(head);
+  print(head1);
+  d->next = head;
+  print(head1);
+  EXPECT_EQ(head, check(head1, head));
+}
+
+TEST(MyList, FunctionCheck4) {
+  const int kListSize = 10;
+  int n = 1;
+  int vals[kListSize];
+  for (int i = 0; i < kListSize; ++i)
+    vals[i] = i + 1;
+  CNode *head = CreateList(kListSize, vals);
+  for (int i = 0; i < n; ++i)
+    vals[i] = i + 10;
+  CNode *d = CreateList(n, vals);
+  CNode *head1 = head->next;
+  print(head);
+  print(d);
+  head = d;
+  head->next = head1;
+  print(head);
+  EXPECT_EQ(d, check(head, d));
 }
