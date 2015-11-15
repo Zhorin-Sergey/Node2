@@ -21,6 +21,8 @@ CNode* CreateList(int count, const int* vals) {
 CNode* check(CNode *a, CNode *b) {
   while (a != 0) {
     CNode *tmp = b;
+    if (tmp == a)
+      return tmp;
     while (tmp != 0) {
       if (tmp->next == a)
         return tmp->next;

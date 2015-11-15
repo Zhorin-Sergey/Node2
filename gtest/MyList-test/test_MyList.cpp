@@ -68,7 +68,7 @@ TEST(MyList, FunctionCheck3) {
   print(head1);
   d->next = head;
   print(head1);
-  EXPECT_EQ(head, check(head1, head));
+  EXPECT_EQ(head, check(head, head1));
 }
 
 TEST(MyList, FunctionCheck4) {
@@ -81,11 +81,9 @@ TEST(MyList, FunctionCheck4) {
   for (int i = 0; i < n; ++i)
     vals[i] = i + 10;
   CNode *d = CreateList(n, vals);
-  CNode *head1 = head->next;
   print(head);
   print(d);
-  head = d;
-  head->next = head1;
+  d->next = head;
   print(head);
-  EXPECT_EQ(d, check(head, d));
+  EXPECT_EQ(head, check(head, d));
 }
