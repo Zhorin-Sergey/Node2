@@ -24,7 +24,7 @@ TEST(MyList, CreateList) {
   EXPECT_EQ(kListSize, k);
 }
 
-TEST(MyList, FunctionCheck1) {
+TEST(MyList, the_common_link_is_somewhere_in_the_middle) {
   const int kListSize = 10;
   int vals[kListSize];
   for (int i = 0; i < kListSize; ++i)
@@ -43,7 +43,7 @@ TEST(MyList, FunctionCheck1) {
   EXPECT_EQ(d, check(head1, head));
 }
 
-TEST(MyList, FunctionCheck2) {
+TEST(MyList, can_return_zero_if_nodes_have_not_common_link) {
   const int kListSize = 10;
   int vals[kListSize];
   for (int i = 0; i < kListSize; ++i)
@@ -53,7 +53,7 @@ TEST(MyList, FunctionCheck2) {
   EXPECT_EQ(NULL, check(head1, head));
 }
 
-TEST(MyList, FunctionCheck3) {
+TEST(MyList, the_common_link_is_a_first_elemet_of_second_node) {
   const int kListSize = 10;
   int vals[kListSize];
   for (int i = 0; i < kListSize; ++i)
@@ -71,7 +71,7 @@ TEST(MyList, FunctionCheck3) {
   EXPECT_EQ(head, check(head, head1));
 }
 
-TEST(MyList, FunctionCheck4) {
+TEST(MyList, the_common_link_is_a_first_elemet_of_second_node_and_sizes_are_not_equal) {
   const int kListSize = 10;
   int n = 1;
   int vals[kListSize];
@@ -84,6 +84,6 @@ TEST(MyList, FunctionCheck4) {
   print(head);
   print(d);
   d->next = head;
-  print(head);
+  print(d);
   EXPECT_EQ(head, check(head, d));
 }
