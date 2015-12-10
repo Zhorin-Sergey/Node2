@@ -128,3 +128,44 @@ TEST(MyList, can_sort_node_with_10_elements) {
   sort(&head);
   EXPECT_EQ(true, comp(head, head1));
 }
+
+TEST(MyList, can_create_list_with_positive_size)
+{
+  ASSERT_NO_THROW(List a(5));
+}
+
+TEST(MyList, cant_create_list_with_negative_size)
+{
+  ASSERT_ANY_THROW(List a(-1));
+}
+
+TEST(MyList, can_add_element) {
+  List a(1);
+  a.Add(12);
+  a.MoveNext();
+  EXPECT_EQ(12, a.data[a.curr]);
+}
+
+TEST(MyList, cant_add_element_to_full_list) {
+  List a(1);
+  a.Add(12);
+  a.MoveNext();
+  ASSERT_ANY_THROW(a.Add(13));
+}
+
+TEST(MyList, cant_deelte_element_from_empty_list) {
+  List a(1);
+  ASSERT_ANY_THROW(a.Del());
+}
+
+TEST(MyList, can_delete_element_from_list) {
+  List a(2);
+  a.Add(12);
+  a.MoveNext();
+  a.Add(13);
+  a.MoveNext();
+  a.MoveNext();
+  a.MoveNext();
+  a.Del();
+  EXPECT_EQ(a.pos[a.curr], 0);
+}
