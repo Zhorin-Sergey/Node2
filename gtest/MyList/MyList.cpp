@@ -94,3 +94,63 @@ bool comp(CNode *a, CNode *b) {
   }
   return true;
 }
+
+List::List(int n) {
+  if (n <= 0)
+    throw exception("Wrong Size");
+  data = new double[n + 2];
+  pos = new int[n + 2];
+  pos[0] = 0;
+  for (int i = 1; i < n + 1; i++)
+    pos[i] = i + 1;
+  pos[n + 1] = 1;
+  curr = 0;
+}
+
+void List::MoveNext() {
+  curr = pos[curr];
+}
+
+void List::Add(double k) {
+  if (pos[1] == 1)
+    throw exception("Full List");
+  int obj = pos[1];
+  this->Del_Node(1);
+  this->Add_Node(curr, obj);
+  data[obj] = k;
+}
+
+void List::Del_Node(int t) {
+  int curre = pos[t];
+  pos[t] = pos[curre];
+  pos[curre] = -1;
+}
+
+void List::Add_Node(int place, int object) {
+  int next = pos[place];
+  pos[place] = object;
+  pos[object] = next;
+}
+
+void List::Del() {
+  if (pos[0] == 0)
+    throw exception("Empty List");
+  if (pos[curr] == 0)
+    this->MoveNext();
+  int obj = pos[curr];
+  this->Del_Node(curr);
+  this->Add_Node(1, obj);
+}
+
+void List::print() {
+  int i = pos[0];
+  while (i != 0) {
+    cout << data[i] << endl;
+    i = pos[i];
+  }
+}
+
+List::~List() {
+  delete []data;
+  delete []pos;
+}
